@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href='../public/stylesheet/main.css'>
+    </link>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../public/stylesheet/css/bootstrap.min.css">
+    <!-- added css file -->
+
+    <!-- <link rel="shortcut icon" type="image/png" href="" /> -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>crud</title>
+    <!-- added jquery file in project -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- fontawesome line -->
+    <script src="https://kit.fontawesome.com/46d1777388.js" crossorigin="anonymous"></script>
+    <!-- added AOS link -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid p-0 bg-light">
+        <nav class="navbar navbar-dark bg-dark justify-content-around">
+            <a class="navbar-brand h1" href="#">
+                <img src="../public/image/ic-crud.svg" width="30px" class="d-inline-block" alt="ic-logo">
+                Basic CRUD UI</a>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <a class="navbar-brand " href="#">
+                <img id="image-user" src="../public/image/image-user.jpg" width="30px" class="d-inline-block"
+                    alt="ic-logo">
+                Mohamadreza Dakhili</a>
+        </nav>
+
+        <div class="col-12 pt-4">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                <img class="mr-2" src="../public/image/plus.svg" alt="ic-plus" width="20px">
+                Create a new account
+            </button>
+        </div>
+
+        <div class="col-12 bg-light pt-5">
+            <table class="table table-bordered table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <div class="form-check">
+                                <input class="form-check-input position-static" type="checkbox" id="blankCheckbox"
+                                    value="option1" aria-label="...">
+                                <label class="form-check-label" for="blankCheckbox">Id</label>
+                            </div>
+                        </th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            <div class="form-check">
+                                <input class="form-check-input position-static" type="checkbox" id="blankCheckbox"
+                                    value="option1" aria-label="...">
+                                <label class="form-check-label" for="blankCheckbox">1</label>
+                            </div>
+                        </th>
+                        <td>Mohamadreza Dakhili</td>
+                        <td>Mohamadrezadakhili53@gmail.com</td>
+                        <td>09384010471</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class="form-check">
+                                <input class="form-check-input position-static" type="checkbox" id="blankCheckbox"
+                                    value="option1" aria-label="...">
+                                <label class="form-check-label" for="blankCheckbox">2</label>
+                            </div>
+                        </th>
+                        <td>Mohamadreza Dakhili</td>
+                        <td>Mohamadrezadakhili53@gmail.com</td>
+                        <td>09384010471</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class="form-check">
+                                <input class="form-check-input position-static" type="checkbox" id="blankCheckbox"
+                                    value="option1" aria-label="...">
+                                <label class="form-check-label" for="blankCheckbox">3</label>
+                            </div>
+                        </th>
+                        <td>Mohamadreza Dakhili</td>
+                        <td>Mohamadrezadakhili53@gmail.com</td>
+                        <td>09384010471</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="../public/javascript/index.js"></script>
+</body>
