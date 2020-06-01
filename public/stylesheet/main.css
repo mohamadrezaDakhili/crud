@@ -1,3 +1,6 @@
 #image-user{
     border-radius: 50%;
 }
+.errorText{
+    color: red
+}
