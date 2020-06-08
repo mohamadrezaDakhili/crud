@@ -1,4 +1,4 @@
-var tdUser = null;
+var trUser = null;
 let idEdit = "";
 $(document).ready(function () {
   $("#btn-modal").click(function () {
@@ -19,13 +19,12 @@ $("#btn-create-account").click(function (e) {
   isEmail($("#email"));
   isPhone($("#phone"));
 
-  read(id, name, email, phone);
-  console.log(tdUser, "tdUser");
-
-  if (tdUser == null) {
+  if (trUser == null) {
     create(id, name, email, phone);
+    read(id, name, email, phone);
   } else {
-    update(id, name, email, phone);
+    onUpdate(idEdit, name, email, phone);
+    trUser = null;
   }
 
   $("#myModal").modal("hide");
@@ -50,7 +49,7 @@ function create(id, name, email, phone) {
     email +
     "</td><td>" +
     phone +
-    "</td><td><button onclick='onEdit(this)'>Edit</button></td></tr>";
+    "</td><td><button onclick='onEdit(this)' class='btn btn-outline-warning mr-2'>Edit</button><button onclick='onRemove(this)' class='btn btn-danger'>Delete</button></td></tr>";
   $("#table > tbody:last-child").append(tr);
 }
 function resetForm() {
@@ -58,27 +57,48 @@ function resetForm() {
   $("#email").val("").css("border-color", "rgb(206, 212, 218)");
   $("#phone").val("").css("border-color", "rgb(206, 212, 218)");
   $("#id").val("").css("border-color", "rgb(206, 212, 218)");
-  tdUser = null;
+  trUser = null;
 }
-function onEdit(td) {
+function onEdit(tr) {
   $("#myModal").modal("show");
-  tdUser = $(td).parent().parent();
-
-  $("#username").val(tdUser.children().eq(1).text());
-  $("#email").val(tdUser.children().eq(2).text());
-  $("#phone").val(tdUser.children().eq(3).text());
-  $("#id").val(tdUser.children().eq(0).text());
-  idEdit = tdUser.children().eq(0).text();
-  tdUser = true;
+  trUser = $(tr).parent().parent();
+  $("#username").val(trUser.children().eq(1).text());
+  $("#email").val(trUser.children().eq(2).text());
+  $("#phone").val(trUser.children().eq(3).text());
+  $("#id").val(trUser.children().eq(0).text());
+  idEdit = trUser.children().eq(0).text();
 }
 
-function update(id, name, email, phone) {
+function onUpdate(id, name, email, phone) {
+  trUser.remove();
   var item = arr.find((i) => i.id == id);
   console.log(item);
-
+  console.log(arr);
   item.name = name;
   item.email = email;
   item.phone = phone;
+  create(id, name, email, phone);
+}
+
+function onRemove(tr) {
+  trUser = $(tr).parent().parent().remove();
+  idEdit = trUser.children().eq(0).text();
+
+  // arr = $.grep(arr, function (e) {
+  //   return e.id != idEdit;
+  // });
+  arr = arr.filter(function (obj) {
+    return obj.id !== +idEdit;
+  });
+  console.log(arr);
+  trUser = null;
+
+  // for (var i = 0; i < arr.length; i++) {
+  //   if (arr[i].id == idEdit) {
+  //     arr.splice(i, 1);
+  //     break;
+  //   }
+  // }
 }
 
 function checkLength(input, min) {
