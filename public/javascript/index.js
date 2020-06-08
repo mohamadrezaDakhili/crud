@@ -1,12 +1,13 @@
 var trUser = null;
 let idEdit = "";
+let arr = [];
+let success = false;
+
 $(document).ready(function () {
   $("#btn-modal").click(function () {
     $("#myModal").modal("show");
   });
 });
-
-let arr = [];
 
 $("#btn-create-account").click(function (e) {
   e.preventDefault();
@@ -26,7 +27,6 @@ $("#btn-create-account").click(function (e) {
     onUpdate(idEdit, name, email, phone);
     trUser = null;
   }
-
   $("#myModal").modal("hide");
   resetForm();
 });
@@ -65,21 +65,16 @@ function onEdit(tr) {
   $("#username").val(trUser.children().eq(1).text());
   $("#email").val(trUser.children().eq(2).text());
   $("#phone").val(trUser.children().eq(3).text());
-  $("#id").val(trUser.children().eq(0).text());
   idEdit = trUser.children().eq(0).text();
 }
-
 function onUpdate(id, name, email, phone) {
   trUser.remove();
   var item = arr.find((i) => i.id == id);
-  console.log(item);
-  console.log(arr);
   item.name = name;
   item.email = email;
   item.phone = phone;
   create(id, name, email, phone);
 }
-
 function onRemove(tr) {
   trUser = $(tr).parent().parent().remove();
   idEdit = trUser.children().eq(0).text();
@@ -87,10 +82,10 @@ function onRemove(tr) {
   // arr = $.grep(arr, function (e) {
   //   return e.id != idEdit;
   // });
+
   arr = arr.filter(function (obj) {
     return obj.id !== +idEdit;
   });
-  console.log(arr);
   trUser = null;
 
   // for (var i = 0; i < arr.length; i++) {
@@ -100,7 +95,7 @@ function onRemove(tr) {
   //   }
   // }
 }
-
+// function for check input
 function checkLength(input, min) {
   if (input.val().length < min) {
     showError(input, "Must be more than 6 words");
@@ -127,20 +122,21 @@ function isPhone(input) {
 function showError(input, message) {
   input.css("border-color", "red");
   const formControl = input.parent();
+  formControl.children("span").remove();
   if (input.val() == "") {
-    if (formControl.children("span")) {
-      formControl.remove("span");
-    } else {
-      message = "is Empty";
-      $(formControl).append(
-        $('<span class="errorText">' + message + "</span>")
-      );
-    }
+    message = "is Empty";
+    let spanMessage = $(formControl).append(
+      $('<span class="errorText">' + message + "</span>")
+    );
   } else {
-    formControl.remove("<span>");
-    $(formControl).append($('<span class="errorText">' + message + "</span>"));
+    let spanMessage = $(formControl).append(
+      $('<span class="errorText">' + message + "</span>")
+    );
   }
+  return spanMessage;
 }
 function showSuccess(input) {
+  const formControl = input.parent();
+  formControl.children("span").remove();
   input.css("border-color", "green");
 }
